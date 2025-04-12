@@ -13,11 +13,14 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Target"))
+        if (collision.gameObject.CompareTag("Objetivo"))
         {
-            Destroy(collision.gameObject); // destruye el objetivo
+            Destroy(collision.gameObject); // destruye el enemigo
+            Destroy(gameObject);           // destruye la bala
         }
-
-        Destroy(gameObject); // destruye la bala
+        else
+        {
+            Destroy(gameObject); // destruye la bala al chocar con otra cosa
+        }
     }
 }
