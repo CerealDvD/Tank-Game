@@ -1,0 +1,31 @@
+[Llaves para Unity]
+[Librerías que no deben subirse a Git]
+
+[Llaves del proyecto]
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemoryCaptures/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+sysinfo.txt
+
+# Archivos ocultos de OS
+.DS_Store
+Thumbs.db
