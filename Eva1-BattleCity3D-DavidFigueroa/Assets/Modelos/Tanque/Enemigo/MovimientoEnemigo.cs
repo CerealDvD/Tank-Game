@@ -24,6 +24,8 @@ public class MovimientoEnemigo : MonoBehaviour
         if (Vector3.Distance(transform.position, objetivoActual.position) < 0.1f)
         {
             objetivoActual = (objetivoActual == puntoA) ? puntoB : puntoA;
+
+            transform.Rotate(0, 180f, 0);
         }
     }
 }

@@ -7,6 +7,8 @@ public class DificultadEnemigo : MonoBehaviour
     public int vida;
     private int dificultad;
 
+    public AudioClip Explocion;
+
     public Material MFacil;
     public Material MMedio;
     public Material MDificil;
@@ -41,6 +43,10 @@ public class DificultadEnemigo : MonoBehaviour
 
         if (vida <= 0)
         {
+            if (Explocion != null)
+                AudioSource.PlayClipAtPoint(Explocion, transform.position);
+
+            FindObjectOfType<Puntaje>().AumentarPuntuacion();
             Destroy(gameObject);
         }
     }
