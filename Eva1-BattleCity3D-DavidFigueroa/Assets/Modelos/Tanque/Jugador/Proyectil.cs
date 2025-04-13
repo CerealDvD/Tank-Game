@@ -15,12 +15,23 @@ public class Proyectil : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Objetivo"))
         {
-            Destroy(collision.gameObject); // destruye el enemigo
-            Destroy(gameObject);           // destruye la bala
+            // Verifica si el objeto tiene el script Enemigo
+            DificultadEnemigo enemigo = collision.gameObject.GetComponent<DificultadEnemigo>();
+
+            if (enemigo != null)
+            {
+                enemigo.RecibirDaño(); // Le resta 1 de vida
+            }
+
+            Destroy(gameObject); // Destruye la bala
+        }
+        else if (collision.gameObject.CompareTag("Jugador"))
+        {
+            // Puedes ignorar o manejar si lo necesitas
         }
         else
         {
-            Destroy(gameObject); // destruye la bala al chocar con otra cosa
+            Destroy(gameObject); // Destruye la bala al chocar con otras cosas
         }
     }
 }
