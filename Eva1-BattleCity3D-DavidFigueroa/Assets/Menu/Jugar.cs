@@ -22,4 +22,9 @@ public class Jugar : MonoBehaviour
         PlayerPrefs.SetInt("Dificultad", 3);
         SceneManager.LoadScene("Juego");
     }
+
+    public void Descripcion()
+    {;
+        SceneManager.LoadScene("Juego");
+    }
 }
