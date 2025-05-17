@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MovimientoJugador : MonoBehaviour
 {
+    public int vida = 2;
+    public TextMeshProUGUI textoVida;
+    private Puntaje puntaje;
+    private bool invulnerable = false;
+    public float tiempoInvulnerabilidad = 0.5f;
+
     public float moveSpeed = 1f;
     public float turnSpeed = 100f;
     public GameObject projectilePrefab;
@@ -16,7 +23,9 @@ public class MovimientoJugador : MonoBehaviour
 
     void Start()
     {
-        // Agregar AudioSource si no hay uno ya
+        textoVida.text = "" + vida;
+        puntaje = FindObjectOfType<Puntaje>();
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -26,6 +35,31 @@ public class MovimientoJugador : MonoBehaviour
         audioSource.loop = true;
         audioSource.playOnAwake = false;
     }
+
+    public void RecibirDaño()
+    {
+        if (invulnerable)
+            return;
+
+        invulnerable = true;
+        Invoke("TerminarInvulnerabilidad", tiempoInvulnerabilidad);
+
+        vida--;
+        textoVida.text = "" + vida;
+
+        if (vida <= 0)
+        {
+            puntaje.MostrarDerrota();
+            Camera.main.transform.parent = null;
+            Destroy(gameObject);
+        }
+    }
+
+    void TerminarInvulnerabilidad()
+    {
+        invulnerable = false;
+    }
+
 
     void Update()
     {
@@ -86,5 +120,13 @@ public class MovimientoJugador : MonoBehaviour
     void Shoot()
     {
         Instantiate(projectilePrefab, Disparo.position, Disparo.rotation);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Objetivo"))
+        {
+            RecibirDaño();
+        }
     }
 }

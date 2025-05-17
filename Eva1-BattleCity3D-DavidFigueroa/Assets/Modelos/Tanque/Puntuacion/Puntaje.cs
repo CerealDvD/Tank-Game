@@ -42,6 +42,11 @@ public class Puntaje : MonoBehaviour
         }
     }
 
+    public void MostrarDerrota()
+    {
+        Puntos.text = "¡Perdiste!";
+    }
+
     void ActualizarTexto()
     {
         Puntos.text = "Puntuación: " + puntuacion;
