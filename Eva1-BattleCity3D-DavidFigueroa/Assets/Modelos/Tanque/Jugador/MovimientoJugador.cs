@@ -10,6 +10,7 @@ public class MovimientoJugador : MonoBehaviour
     private Puntaje puntaje;
     private bool invulnerable = false;
     public float tiempoInvulnerabilidad = 0.5f;
+    public float tiempoAntesDestruccion = 0.1f;
 
     public float moveSpeed = 1f;
     public float turnSpeed = 100f;
@@ -51,8 +52,14 @@ public class MovimientoJugador : MonoBehaviour
         {
             puntaje.MostrarDerrota();
             Camera.main.transform.parent = null;
-            Destroy(gameObject);
+            StartCoroutine(DestruirConDelay());
         }
+    }
+
+    IEnumerator DestruirConDelay()
+    {
+        yield return new WaitForSeconds(tiempoAntesDestruccion);
+        Destroy(gameObject);
     }
 
     void TerminarInvulnerabilidad()
@@ -127,6 +134,12 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("Objetivo"))
         {
             RecibirDaño();
+
+            EnemigoNavMesh enemigo = collision.gameObject.GetComponent<EnemigoNavMesh>();
+            if (enemigo != null)
+            {
+                enemigo.ActivarRalentizacion();
+            }
         }
     }
 }

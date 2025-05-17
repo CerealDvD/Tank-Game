@@ -47,7 +47,16 @@ public class DificultadEnemigo : MonoBehaviour
                 AudioSource.PlayClipAtPoint(Explocion, transform.position);
 
             FindObjectOfType<Puntaje>().AumentarPuntuacion();
+
+            // GetComponent<EnemigoNavMesh>().Respawn();
+
             Destroy(gameObject);
         }
+
+    }
+
+    public void RestablecerVida()
+    {
+        vida = dificultad;
     }
 }
