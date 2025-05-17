@@ -7,12 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class Puntaje : MonoBehaviour
 {
+    public TextMeshProUGUI NombreJ;
     public TextMeshProUGUI Puntos;
     private int puntuacion = 0;
     private int puntuacionMaxima = 5;
 
     void Start()
     {
+        string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
+        NombreJ.text = nombre;
+
         // Leer y mostrar la puntuación anterior solo una vez al iniciar
         int ultimaPuntuacion = PlayerPrefs.GetInt("Puntuacion", 0);
         Debug.Log("Última puntuación: " + ultimaPuntuacion);
