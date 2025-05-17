@@ -7,6 +7,7 @@ public class MovimientoJugador : MonoBehaviour
 {
     public int vida = 2;
     public TextMeshProUGUI textoVida;
+    public TextMeshProUGUI textoTiempoRestante;
     private Puntaje puntaje;
     private bool invulnerable = false;
     public float tiempoInvulnerabilidad = 0.5f;
@@ -35,6 +36,8 @@ public class MovimientoJugador : MonoBehaviour
 
         audioSource.loop = true;
         audioSource.playOnAwake = false;
+
+        StartCoroutine(MuertePorTiempo());
     }
 
     public void RecibirDaño()
@@ -59,6 +62,24 @@ public class MovimientoJugador : MonoBehaviour
     IEnumerator DestruirConDelay()
     {
         yield return new WaitForSeconds(tiempoAntesDestruccion);
+        Destroy(gameObject);
+    }
+
+    IEnumerator MuertePorTiempo()
+    {
+        float tiempoRestante = 15f;
+        while (tiempoRestante > 0)
+        {
+            if (textoTiempoRestante != null)
+            {
+                textoTiempoRestante.text = "T: " + Mathf.CeilToInt(tiempoRestante).ToString();
+            }
+            yield return new WaitForSeconds(1f);
+            tiempoRestante -= 1f;
+        }
+
+        puntaje.MostrarDerrota();
+        Camera.main.transform.parent = null;
         Destroy(gameObject);
     }
 
