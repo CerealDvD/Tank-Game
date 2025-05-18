@@ -16,7 +16,6 @@ public class EnemigoNavMesh : MonoBehaviour
     void Start()
     {
         agente = GetComponent<NavMeshAgent>();
-        transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
 
         int dificultad = PlayerPrefs.GetInt("Dificultad", 1);
 
