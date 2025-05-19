@@ -7,6 +7,7 @@ public class DificultadEnemigo : MonoBehaviour
     public int vida;
     private int dificultad;
 
+    public ParticleSystem explosionPrefab;
     public AudioClip Explocion;
 
     public Material MFacil;
@@ -47,6 +48,7 @@ public class DificultadEnemigo : MonoBehaviour
 
             FindObjectOfType<Puntaje>().AumentarPuntuacion();
 
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

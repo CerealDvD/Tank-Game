@@ -131,7 +131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_LocalScale.x
@@ -991,6 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
+  explosionPrefab: {fileID: 1887397367696791621, guid: 52ac5ca0d0c029448b742476a54ed613, type: 3}
   Explocion: {fileID: 8300000, guid: 449206040c53c3d4c8fb1dcfa8f4fdc5, type: 3}
   MFacil: {fileID: 2100000, guid: a051b8ed32aade54ba170f9f500e29e5, type: 2}
   MMedio: {fileID: 2100000, guid: f9e9764cd4089f84cb2c20f43fd40d66, type: 2}
@@ -1079,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
+  explosionPrefab: {fileID: 1887397367696791621, guid: 52ac5ca0d0c029448b742476a54ed613, type: 3}
   Explocion: {fileID: 8300000, guid: 449206040c53c3d4c8fb1dcfa8f4fdc5, type: 3}
   MFacil: {fileID: 2100000, guid: a051b8ed32aade54ba170f9f500e29e5, type: 2}
   MMedio: {fileID: 2100000, guid: f9e9764cd4089f84cb2c20f43fd40d66, type: 2}
@@ -2670,6 +2672,7 @@ MonoBehaviour:
   Disparo: {fileID: 2098265708}
   SDisparo: {fileID: 8300000, guid: 0824f438c773a4b4a87dae7799176572, type: 3}
   SMovimiento: {fileID: 8300000, guid: 127263c06cc4e7040940fbe77b3269a0, type: 3}
+  explosionPrefab: {fileID: 1887397367696791621, guid: 52ac5ca0d0c029448b742476a54ed613, type: 3}
 --- !u!1001 &1109889277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2679,7 +2682,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_LocalScale.x
@@ -2802,7 +2805,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_LocalScale.x
@@ -3316,6 +3319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
+  explosionPrefab: {fileID: 1887397367696791621, guid: 52ac5ca0d0c029448b742476a54ed613, type: 3}
   Explocion: {fileID: 8300000, guid: 449206040c53c3d4c8fb1dcfa8f4fdc5, type: 3}
   MFacil: {fileID: 2100000, guid: a051b8ed32aade54ba170f9f500e29e5, type: 2}
   MMedio: {fileID: 2100000, guid: f9e9764cd4089f84cb2c20f43fd40d66, type: 2}
@@ -3966,6 +3970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
+  explosionPrefab: {fileID: 1887397367696791621, guid: 52ac5ca0d0c029448b742476a54ed613, type: 3}
   Explocion: {fileID: 8300000, guid: 449206040c53c3d4c8fb1dcfa8f4fdc5, type: 3}
   MFacil: {fileID: 2100000, guid: a051b8ed32aade54ba170f9f500e29e5, type: 2}
   MMedio: {fileID: 2100000, guid: f9e9764cd4089f84cb2c20f43fd40d66, type: 2}
@@ -4249,11 +4254,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1384928636}
-  - {fileID: 2021831417}
-  - {fileID: 1738934546}
   - {fileID: 55177021}
   - {fileID: 2073666588}
+  - {fileID: 1738934546}
+  - {fileID: 1384928636}
+  - {fileID: 2021831417}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4623,7 +4628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_LocalScale.x
@@ -5095,6 +5100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 0
+  explosionPrefab: {fileID: 1887397367696791621, guid: 52ac5ca0d0c029448b742476a54ed613, type: 3}
   Explocion: {fileID: 8300000, guid: 449206040c53c3d4c8fb1dcfa8f4fdc5, type: 3}
   MFacil: {fileID: 2100000, guid: a051b8ed32aade54ba170f9f500e29e5, type: 2}
   MMedio: {fileID: 2100000, guid: f9e9764cd4089f84cb2c20f43fd40d66, type: 2}
@@ -5294,7 +5300,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}
       propertyPath: m_LocalScale.x

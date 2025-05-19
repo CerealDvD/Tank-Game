@@ -21,6 +21,7 @@ public class MovimientoJugador : MonoBehaviour
     public AudioClip SDisparo;
     public AudioClip SMovimiento;
     private AudioSource audioSource;
+    public ParticleSystem explosionPrefab;
 
     private PFinal uiFinal;
 
@@ -63,6 +64,7 @@ public class MovimientoJugador : MonoBehaviour
     IEnumerator DestruirConDelay()
     {
         yield return new WaitForSeconds(tiempoAntesDestruccion);
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -80,6 +82,7 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         Camera.main.transform.parent = null;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Derrota();
     }
@@ -89,6 +92,7 @@ public class MovimientoJugador : MonoBehaviour
         string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
         uiFinal.Mostrar(false, nombre);
         Camera.main.transform.parent = null;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject, 0.1f);
     }
 
