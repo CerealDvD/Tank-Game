@@ -15,10 +15,9 @@ public class DificultadEnemigo : MonoBehaviour
 
     void Start()
     {
-        dificultad = PlayerPrefs.GetInt("Dificultad", 1); // Valor por defecto: 1
-        vida = dificultad; // Vida será igual a la dificultad (1, 2 o 3)
+        dificultad = PlayerPrefs.GetInt("Dificultad", 1); 
+        vida = dificultad; 
 
-        // Cambia el material según la dificultad
         Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
         {
@@ -47,8 +46,6 @@ public class DificultadEnemigo : MonoBehaviour
                 AudioSource.PlayClipAtPoint(Explocion, transform.position);
 
             FindObjectOfType<Puntaje>().AumentarPuntuacion();
-
-            // GetComponent<EnemigoNavMesh>().Respawn();
 
             Destroy(gameObject);
         }

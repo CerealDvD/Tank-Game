@@ -42,7 +42,6 @@ public class EnemigoNavMesh : MonoBehaviour
     {
         if (objetivo != null)
         {
-            // Movimiento jugador
             agente.destination = objetivo.position;
         }
         else

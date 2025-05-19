@@ -10,41 +10,22 @@ public class Puntaje : MonoBehaviour
     public TextMeshProUGUI NombreJ;
     public TextMeshProUGUI Puntos;
     private int puntuacion = 0;
-    private int puntuacionMaxima = 5;
 
     void Start()
     {
         string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
         NombreJ.text = nombre;
 
-        // Leer y mostrar la puntuación anterior solo una vez al iniciar
         int ultimaPuntuacion = PlayerPrefs.GetInt("Puntuacion", 0);
         Debug.Log("Última puntuación: " + ultimaPuntuacion);
-
-        // Iniciar el ciclo que imprime cada 3 segundos
         StartCoroutine(ContadorConsola());
-
-        // Mostrar puntuación inicial en la UI
         ActualizarTexto();
     }
 
     public void AumentarPuntuacion()
     {
         puntuacion++;
-
-        if (puntuacion >= puntuacionMaxima)
-        {
-            Puntos.text = "¡Terminaste!";
-        }
-        else
-        {
-            ActualizarTexto();
-        }
-    }
-
-    public void MostrarDerrota()
-    {
-        Puntos.text = "¡Perdiste!";
+        ActualizarTexto();
     }
 
     void ActualizarTexto()
@@ -63,7 +44,6 @@ public class Puntaje : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        // Guardar la puntuación cuando se cierra el juego
         PlayerPrefs.SetInt("Puntuacion", puntuacion);
     }
 

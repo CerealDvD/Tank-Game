@@ -55,7 +55,6 @@ public class MovimientoJugador : MonoBehaviour
 
         if (vida <= 0)
         {
-            puntaje.MostrarDerrota();
             Camera.main.transform.parent = null;
             StartCoroutine(DestruirConDelay());
             Derrota();
@@ -71,7 +70,7 @@ public class MovimientoJugador : MonoBehaviour
     IEnumerator MuertePorTiempo()
     {
         float tiempoRestante = 15f;
-        while (tiempoRestante > 0)
+        while (tiempoRestante >= 0)
         {
             if (textoTiempoRestante != null)
             {
@@ -81,16 +80,15 @@ public class MovimientoJugador : MonoBehaviour
             tiempoRestante -= 1f;
         }
 
-        puntaje.MostrarDerrota();
         Camera.main.transform.parent = null;
         Destroy(gameObject);
         Derrota();
     }
 
-    void Derrota()                 // NUEVO método
+    void Derrota()              
     {
         string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
-        uiFinal.Mostrar(false, nombre);   // false = derrota
+        uiFinal.Mostrar(false, nombre);
         Camera.main.transform.parent = null;
         Destroy(gameObject, 0.1f);
     }
@@ -104,7 +102,6 @@ public class MovimientoJugador : MonoBehaviour
     {
         bool moviendo = false;
 
-        // Movimiento hacia adelante o atrás
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
@@ -117,7 +114,6 @@ public class MovimientoJugador : MonoBehaviour
             moviendo = true;
         }
 
-        // Rotación
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(Vector3.up, -turnSpeed * Time.deltaTime);
@@ -130,7 +126,6 @@ public class MovimientoJugador : MonoBehaviour
             moviendo = true;
         }
 
-        // Activar sonido si se está moviendo
         if (moviendo)
         {
             if (!audioSource.isPlaying && SMovimiento != null)
@@ -147,7 +142,6 @@ public class MovimientoJugador : MonoBehaviour
             }
         }
 
-        // Disparo
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (SDisparo != null)
