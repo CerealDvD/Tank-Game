@@ -10,6 +10,9 @@ public class Jugar : MonoBehaviour
     public TMP_InputField inputJugador;
     public Slider sliderVolumen;
 
+    [Header("Panel de descripción")]
+    public GameObject panelDescripcion;
+
     void GuardarPreferencias()
     {
         string nombre = inputJugador.text.Trim();
@@ -46,6 +49,13 @@ public class Jugar : MonoBehaviour
 
     public void Descripcion()
     {;
-        SceneManager.LoadScene("Juego");
+        if (panelDescripcion != null)
+            panelDescripcion.SetActive(true);
+    }
+
+    public void CerrarDescripcion()       // botón “Cerrar” en el panel
+    {
+        if (panelDescripcion != null)
+            panelDescripcion.SetActive(false);  // ocultar panel
     }
 }
