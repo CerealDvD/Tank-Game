@@ -3286,6 +3286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelGanar: {fileID: 1220846172}
   txtResultado: {fileID: 730329862}
+  SGanar: {fileID: 8300000, guid: b498150210fbff948945070c57c3dbf1, type: 3}
+  SPerder: {fileID: 8300000, guid: efe3307e51af1d04c8da69a4bfac9ae1, type: 3}
 --- !u!1 &1326788654 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: ff4572c3d152d5040b0ca38f46365cf1, type: 3}

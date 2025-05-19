@@ -14,6 +14,8 @@ public class PFinal : MonoBehaviour
 {
     public GameObject panelGanar;
     public TextMeshProUGUI txtResultado;
+    public AudioClip SGanar;
+    public AudioClip SPerder;
 
     void Start() => panelGanar.SetActive(false);
 
@@ -21,17 +23,21 @@ public class PFinal : MonoBehaviour
     {
         panelGanar.SetActive(true);
 
+        Vector3 posAudio = Camera.main.transform.position;
+        float vol = PlayerPrefs.GetFloat("Volumen", 1f);
+
         if (victoria)
         {
+            if (SGanar) AudioSource.PlayClipAtPoint(SGanar, posAudio, vol);
             txtResultado.text = $"¡Ganaste {nombre}!";
         }
         else
         {
-            string mensaje = motivo == MotivoDerrota.TiempoAgotado
-                ? "Se acabó el tiempo"
-                : "Te mató un Kamikaze";
-
-            txtResultado.text = $"Game Over {nombre}\n{mensaje}";
+            if (SPerder) AudioSource.PlayClipAtPoint(SPerder, posAudio, vol);
+            string msg = motivo == MotivoDerrota.TiempoAgotado
+                         ? "Se acabó el tiempo"
+                         : "Te mató un Kamikaze";
+            txtResultado.text = $"Game Over {nombre}\n{msg}";
         }
 
         Time.timeScale = 0f;
