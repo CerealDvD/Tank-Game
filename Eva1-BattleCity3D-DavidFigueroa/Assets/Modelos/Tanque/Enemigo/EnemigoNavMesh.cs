@@ -58,7 +58,7 @@ public class EnemigoNavMesh : MonoBehaviour
 
             toquesAlJugador--;
             if (Explocion != null)
-                AudioSource.PlayClipAtPoint(Explocion, transform.position);
+                AudioSource.PlayClipAtPoint(Explocion, transform.position, PlayerPrefs.GetFloat("Volumen", 1f));
             if (toquesAlJugador <= 0)
             {
                 Destroy(gameObject);

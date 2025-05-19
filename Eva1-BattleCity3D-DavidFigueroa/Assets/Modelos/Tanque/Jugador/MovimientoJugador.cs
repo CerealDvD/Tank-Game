@@ -29,14 +29,15 @@ public class MovimientoJugador : MonoBehaviour
         textoVida.text = "" + vida;
         puntaje = FindObjectOfType<Puntaje>();
 
+        // 1‑ Obtener o crear el AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
-        {
             audioSource = gameObject.AddComponent<AudioSource>();
-        }
 
+        // 2‑ Configurarlo
         audioSource.loop = true;
         audioSource.playOnAwake = false;
+        audioSource.volume = PlayerPrefs.GetFloat("Volumen", 1f);   // ← ahora ya existe
 
         uiFinal = FindObjectOfType<PFinal>();
         StartCoroutine(MuertePorTiempo());
@@ -145,7 +146,7 @@ public class MovimientoJugador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (SDisparo != null)
-                AudioSource.PlayClipAtPoint(SDisparo, transform.position);
+                AudioSource.PlayClipAtPoint(SDisparo, transform.position, PlayerPrefs.GetFloat("Volumen", 1f));
             Shoot();
         }
     }

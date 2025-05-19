@@ -43,7 +43,7 @@ public class DificultadEnemigo : MonoBehaviour
         if (vida <= 0)
         {
             if (Explocion != null)
-                AudioSource.PlayClipAtPoint(Explocion, transform.position);
+                AudioSource.PlayClipAtPoint(Explocion, transform.position, PlayerPrefs.GetFloat("Volumen", 1f));
 
             FindObjectOfType<Puntaje>().AumentarPuntuacion();
 
