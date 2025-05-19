@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -20,8 +20,9 @@ public class MovimientoJugador : MonoBehaviour
 
     public AudioClip SDisparo;
     public AudioClip SMovimiento;
-
     private AudioSource audioSource;
+
+    private PFinal uiFinal;
 
     void Start()
     {
@@ -37,10 +38,11 @@ public class MovimientoJugador : MonoBehaviour
         audioSource.loop = true;
         audioSource.playOnAwake = false;
 
+        uiFinal = FindObjectOfType<PFinal>();
         StartCoroutine(MuertePorTiempo());
     }
 
-    public void RecibirDaÒo()
+    public void RecibirDa√±o()
     {
         if (invulnerable)
             return;
@@ -56,6 +58,7 @@ public class MovimientoJugador : MonoBehaviour
             puntaje.MostrarDerrota();
             Camera.main.transform.parent = null;
             StartCoroutine(DestruirConDelay());
+            Derrota();
         }
     }
 
@@ -81,6 +84,15 @@ public class MovimientoJugador : MonoBehaviour
         puntaje.MostrarDerrota();
         Camera.main.transform.parent = null;
         Destroy(gameObject);
+        Derrota();
+    }
+
+    void Derrota()                 // NUEVO m√©todo
+    {
+        string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
+        uiFinal.Mostrar(false, nombre);   // false = derrota
+        Camera.main.transform.parent = null;
+        Destroy(gameObject, 0.1f);
     }
 
     void TerminarInvulnerabilidad()
@@ -88,12 +100,11 @@ public class MovimientoJugador : MonoBehaviour
         invulnerable = false;
     }
 
-
     void Update()
     {
         bool moviendo = false;
 
-        // Movimiento hacia adelante o atr·s
+        // Movimiento hacia adelante o atr√°s
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
@@ -106,7 +117,7 @@ public class MovimientoJugador : MonoBehaviour
             moviendo = true;
         }
 
-        // RotaciÛn
+        // Rotaci√≥n
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(Vector3.up, -turnSpeed * Time.deltaTime);
@@ -119,7 +130,7 @@ public class MovimientoJugador : MonoBehaviour
             moviendo = true;
         }
 
-        // Activar sonido si se est· moviendo
+        // Activar sonido si se est√° moviendo
         if (moviendo)
         {
             if (!audioSource.isPlaying && SMovimiento != null)
@@ -154,13 +165,17 @@ public class MovimientoJugador : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Objetivo"))
         {
-            RecibirDaÒo();
+            RecibirDa√±o();
 
             EnemigoNavMesh enemigo = collision.gameObject.GetComponent<EnemigoNavMesh>();
             if (enemigo != null)
             {
                 enemigo.ActivarRalentizacion();
             }
+        }
+
+        if (collision.gameObject.CompareTag("Ganar"))
+        {
         }
     }
 }

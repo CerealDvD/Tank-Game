@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Objetivo
   - Jugador
+  - Ganar
   layers:
   - Default
   - TransparentFX

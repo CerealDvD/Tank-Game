@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -17,14 +17,14 @@ public class Puntaje : MonoBehaviour
         string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
         NombreJ.text = nombre;
 
-        // Leer y mostrar la puntuaci髇 anterior solo una vez al iniciar
+        // Leer y mostrar la puntuaci贸n anterior solo una vez al iniciar
         int ultimaPuntuacion = PlayerPrefs.GetInt("Puntuacion", 0);
-        Debug.Log("趌tima puntuaci髇: " + ultimaPuntuacion);
+        Debug.Log("脷ltima puntuaci贸n: " + ultimaPuntuacion);
 
         // Iniciar el ciclo que imprime cada 3 segundos
         StartCoroutine(ContadorConsola());
 
-        // Mostrar puntuaci髇 inicial en la UI
+        // Mostrar puntuaci贸n inicial en la UI
         ActualizarTexto();
     }
 
@@ -34,7 +34,7 @@ public class Puntaje : MonoBehaviour
 
         if (puntuacion >= puntuacionMaxima)
         {
-            Puntos.text = "erminaste!";
+            Puntos.text = "隆Terminaste!";
         }
         else
         {
@@ -44,31 +44,32 @@ public class Puntaje : MonoBehaviour
 
     public void MostrarDerrota()
     {
-        Puntos.text = "erdiste!";
+        Puntos.text = "隆Perdiste!";
     }
 
     void ActualizarTexto()
     {
-        Puntos.text = "Puntuaci髇: " + puntuacion;
+        Puntos.text = "Puntuaci贸n: " + puntuacion;
     }
 
     IEnumerator ContadorConsola()
     {
         while (true)
         {
-            Debug.Log("Puntuaci髇 actual: " + puntuacion);
+            Debug.Log("Puntuaci贸n actual: " + puntuacion);
             yield return new WaitForSeconds(3f);
         }
     }
 
     void OnApplicationQuit()
     {
-        // Guardar la puntuaci髇 cuando se cierra el juego
+        // Guardar la puntuaci贸n cuando se cierra el juego
         PlayerPrefs.SetInt("Puntuacion", puntuacion);
     }
 
     public void SalirDelJuego()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 }
