@@ -4,23 +4,37 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+public enum MotivoDerrota
+{
+    SinVida,
+    TiempoAgotado
+}
+
 public class PFinal : MonoBehaviour
 {
-    public GameObject panelGanar;         
-    public TextMeshProUGUI txtResultado;   
+    public GameObject panelGanar;
+    public TextMeshProUGUI txtResultado;
 
-    void Start()                       
-    {
-        panelGanar.SetActive(false);
-    }
+    void Start() => panelGanar.SetActive(false);
 
-    public void Mostrar(bool victoria, string nombre)
+    public void Mostrar(bool victoria, string nombre, MotivoDerrota motivo = MotivoDerrota.SinVida)
     {
         panelGanar.SetActive(true);
-        txtResultado.text = victoria
-            ? $"¡Ganaste {nombre}!"
-            : $"Perdiste {nombre} :(";
-        Time.timeScale = 0f;             
+
+        if (victoria)
+        {
+            txtResultado.text = $"¡Ganaste {nombre}!";
+        }
+        else
+        {
+            string mensaje = motivo == MotivoDerrota.TiempoAgotado
+                ? "Se acabó el tiempo"
+                : "Te mató un Kamikaze";
+
+            txtResultado.text = $"Game Over {nombre}\n{mensaje}";
+        }
+
+        Time.timeScale = 0f;
     }
 
     public void VolverMenu()

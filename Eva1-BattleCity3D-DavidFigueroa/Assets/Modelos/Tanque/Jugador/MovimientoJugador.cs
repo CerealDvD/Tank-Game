@@ -44,20 +44,17 @@ public class MovimientoJugador : MonoBehaviour
 
     public void RecibirDaño()
     {
-        if (invulnerable)
-            return;
+        if (invulnerable) return;
 
         invulnerable = true;
-        Invoke("TerminarInvulnerabilidad", tiempoInvulnerabilidad);
+        Invoke(nameof(TerminarInvulnerabilidad), tiempoInvulnerabilidad);
 
         vida--;
-        textoVida.text = "" + vida;
+        textoVida.text = vida.ToString();
 
         if (vida <= 0)
         {
-            Camera.main.transform.parent = null;
-            StartCoroutine(DestruirConDelay());
-            Derrota();
+            Derrota(MotivoDerrota.SinVida);
         }
     }
 
@@ -71,29 +68,24 @@ public class MovimientoJugador : MonoBehaviour
     IEnumerator MuertePorTiempo()
     {
         float tiempoRestante = 15f;
-        while (tiempoRestante >= 0)
+        while (tiempoRestante > 0)
         {
-            if (textoTiempoRestante != null)
-            {
-                textoTiempoRestante.text = "T: " + Mathf.CeilToInt(tiempoRestante).ToString();
-            }
+            textoTiempoRestante.text = "T: " + Mathf.CeilToInt(tiempoRestante);
             yield return new WaitForSeconds(1f);
-            tiempoRestante -= 1f;
+            tiempoRestante--;
         }
 
-        Camera.main.transform.parent = null;
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-        Derrota();
+        Derrota(MotivoDerrota.TiempoAgotado);
     }
 
-    void Derrota()              
+    void Derrota(MotivoDerrota motivo)
     {
-        string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
-        uiFinal.Mostrar(false, nombre);
-        Camera.main.transform.parent = null;
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject, 0.1f);
+        Camera.main.transform.parent = null;
+        Destroy(gameObject, tiempoAntesDestruccion);
+
+        string nombre = PlayerPrefs.GetString("NombreJugador", "Jugador");
+        uiFinal.Mostrar(false, nombre, motivo);
     }
 
     void TerminarInvulnerabilidad()

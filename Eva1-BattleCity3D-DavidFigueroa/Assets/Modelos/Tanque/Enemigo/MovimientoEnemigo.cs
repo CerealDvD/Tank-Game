@@ -17,10 +17,8 @@ public class MovimientoEnemigo : MonoBehaviour
 
     void Update()
     {
-        // Mover hacia el objetivo
         transform.position = Vector3.MoveTowards(transform.position, objetivoActual.position, velocidad * Time.deltaTime);
 
-        // Cambiar de dirección cuando llega a uno de los puntos
         if (Vector3.Distance(transform.position, objetivoActual.position) < 0.1f)
         {
             objetivoActual = (objetivoActual == puntoA) ? puntoB : puntoA;
